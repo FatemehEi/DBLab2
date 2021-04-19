@@ -1,4 +1,5 @@
 import {Body,Controller,Delete,Get,Header,Post,Put,} from '@nestjs/common';
+import DeleteBookDTO from 'src/user/dto/delete-book.dto';
 import CreateBookDTO from '../user/dto/create-book.dto';
 import { BookService } from './books.service';
 
@@ -15,6 +16,11 @@ export class BookController {
     @Get()
     async getAll() {
         return await this.bookService.getAllBooks();
+    }
+
+    @Delete()
+    async deleteBook(@Body() book: DeleteBookDTO){
+        return await this.bookService.deleteBook(book.id);
     }
 
     @Put()
